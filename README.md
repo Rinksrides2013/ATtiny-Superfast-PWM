@@ -15,8 +15,8 @@ int main(){
 	DDRB	  =	0x3;	//output PB0 & PB1 (OC0A / OC1A)
 	TCCR1	  =	0x51;	//PWM1A on, OC1A cleared / !OC1A set, clock select 1:1 (PCK)
 	OCR1A	  =	127;	//PWM Duty %
-	OCR1C	  =	255;	//PWM freq (clears TCNT1 on match, affects resolution) ~500KHz when OCR1C	=	0xff
-	DTPS1	  =	0;		//dead time prescaler 2-bit
+	OCR1C	  =	255;	//PWM freq (clears TCNT1 on match, affects resolution) ~500KHz when OCR1C = 0xff
+	DTPS1	  =	0;	//dead time prescaler 2-bit
 	DT1A	  =	0x33;	//dead time H[7..4] & L[3..0] initially set to 4 clocks separation of OC1A cleared / !OC1A set
 	
 	//loop	
@@ -38,7 +38,7 @@ be less than OCR1C for PWM to work.
 
 DTPS1   = 0..3 the CK or PCK prescaler for the deadtimes between complimentary outputs 
 <0 = 1:1, 3 = 1:8 deatime clock : CK or PCK>
-DT1A	  =	0x33;	//dead time H[7..4] & L[3..0] here I arbitrarily set to 4 clocks separation of OC1A cleared / !OC1A set.
+DT1A	= 0x33;	dead time H[7..4] & L[3..0] here I arbitrarily set to 4 clocks separation of OC1A cleared / !OC1A set.
 This is useful for controlling high power switching transistors in a syncronised SMPS power supply or H-Bridge. 
   Ideally you adjust the deatimes according to the turn-on/off times of your transistors and drivers so when the complimentary
 outputs switch, the duty number is lessened by the total dead time.
